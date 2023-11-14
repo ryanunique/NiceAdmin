@@ -63,7 +63,10 @@
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-      </li>
+      </li><!-- End Dashboard Nav -->
+    </ul>
+  </aside><!-- End Sidebar-->
+
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -102,9 +105,9 @@
                 </div>
 
               </div>
-            </div>
+            </div><!-- End Sales Card -->
 
-
+            <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 
@@ -124,8 +127,9 @@
                 </div>
 
               </div>
-            </div>
+            </div><!-- End Revenue Card -->
 
+            <!-- Customers Card -->
             <div class="col-xxl-4 col-xl-12">
               <div class="card info-card customers-card">
                 <div class="card-body"> 
@@ -146,77 +150,7 @@
               </div>
 
             </div>
-
-            <!-- Reports -->
-            <div class="col-12">
-              <div class="card">
-
-                <div class="card-body">
-                  <h5 class="card-title">Reports <span>/Today</span></h5>
-
-                  <!-- Line Chart -->
-                  <div id="reportsChart"></div>
-
-                  <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      new ApexCharts(document.querySelector("#reportsChart"), {
-                        series: [{
-                          name: 'Gold',
-                          data: [5,10,3],
-                        }, {
-                          name: 'Silver',
-                          data: [6,13,5]
-                        }, {
-                          name: 'Bronze',
-                          data: [4,3,7]
-                        }],
-                        chart: {
-                          height: 350,
-                          type: 'area',
-                          toolbar: {
-                            show: false
-                          },
-                        },
-                        markers: {
-                          size: 4
-                        },
-                        colors: ['#FFD700', '	#008000', '#0000FF'],
-                        fill: {
-                          type: "gradient",
-                          gradient: {
-                            shadeIntensity: 1,
-                            opacityFrom: 0.3,
-                            opacityTo: 0.4,
-                            stops: [0, 20, 50]
-                          }
-                        },
-                        dataLabels: {
-                          enabled: false
-                        },
-                        stroke: {
-                          curve: 'smooth',
-                          width: 2
-                        },
-                        xaxis: {
-                          type: 'text',
-                          categories: ["Day 1","Day 2","Day3"]
-                        },
-                        tooltip: {
-                          x: {
-                            format: 'dd/MM/yy HH:mm'
-                          },
-                        }
-                      }).render();
-                    });
-                  </script>
-                  <!-- End Line Chart -->
-
-                </div>
-
-              </div>
-            </div><!-- End Reports -->
-
-            <!-- Recent Activity -->
+            
             <div class="col-100">
               <div class="card recent-sales overflow-auto">
                 

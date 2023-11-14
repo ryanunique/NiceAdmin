@@ -156,83 +156,41 @@
 
     </div>
   </div>
- 
+  <div class="card col-xxl-4 col-md-6">
+    <div  class="card info-card sales-card">
+      <div class="card-body">
+        <form idi="addForm">
+          <h5 class="card-title">Add Players</h5>
+          <label for ="StudentID">Student ID:</label>
+          <input type="text" class="form-control" id ="StudentID" required>
+          <label for = "name">Name:</label>
+          <input type="text"class="form-control" id ="name" required>
+          <label for = "course">Course:</label>
+          <input type="text"class="form-control" id ="course" required>
+          <br/>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary" onclick="addRecord()">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+     
+  <br/>
+
    <!-- Table with stripped rows -->
-  <table class="table datatable">
+  <table Id= "recordTable" class="table datatable">
     <thead>
       <tr>
         <p>Volleyball Women</p>
-        <th scope="col">#</th>
+        <th scope="col">Student ID</th>
         <th scope="col">Name</th>
         <th scope="col">Course</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Arabela Reyes</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Chunette Malta</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Czyrille Mansibang</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">4</th>
-        <td>Elaine Ochoa</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">5</th>
-        <td>Erica Magauay</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">6</th>
-        <td>Jerica Tactay</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">7</th>
-        <td>Joriebel Cureg</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">7</th>
-        <td>Kylie Danao</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">8</th>
-        <td>Mauricio Tagao</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">9</th>
-        <td>Monica Baui</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">10</th>
-        <td>Roseann Malsi</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">11</th>
-        <td>Shaina Queja</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <th scope="row">12</th>
-        <td>Precious Lopez</td>
-        <td>-</td>
-      </tr>
+      
     
     </tbody>
   </table>
@@ -292,6 +250,72 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    // Sample data for initial records
+    var records = [
+        {id:"1232565", name: "John Doe", course: "Computer Science" },
+       
+    ];
+
+    // Function to render records in the table
+    function renderTable() {
+        var tableBody = document.getElementById("recordTable").getElementsByTagName('tbody')[0];
+        tableBody.innerHTML = '';
+
+        records.forEach(function(record, index) {
+            var row = tableBody.insertRow(index);
+
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+           
+           
+
+            cell1.innerHTML = record.name;
+            cell2.innerHTML = record.course;
+            cell3.innerHTML = '<button onclick="editRecord(' + index + ')">Edit</button>' +
+                              '<button onclick="deleteRecord(' + index + ')">Delete</button>';
+        });
+    }
+
+    // Function to add a new record
+    function addRecord() {
+        var studentid = document.getElementById("StudentID").value;
+        var name = document.getElementById("name").value;
+        var course = document.getElementById("course").value;
+
+        records.push({ name: name, course: course });
+        renderTable();
+        // Clear the input fields
+        document.getElementById("StudentID").value = '';
+        document.getElementById("name").value = '';
+        document.getElementById("course").value = '';
+    }
+
+    // Function to edit an existing record
+    function editRecord(index) {
+        var newName = prompt("Enter new name:", records[index].name);
+        var newCourse = prompt("Enter new course:", records[index].course);
+
+        if (newName !== null && newCourse !== null) {
+            records[index].name = newName;
+            records[index].course = newCourse;
+            renderTable();
+        }
+    }
+
+    // Function to delete a record
+    function deleteRecord(index) {
+        var confirmDelete = confirm("Are you sure you want to delete this record?");
+        if (confirmDelete) {
+            records.splice(index, 1);
+            renderTable();
+        }
+    }
+
+    // Initial rendering of the table
+    renderTable();
+</script>
 
 </body>
 
